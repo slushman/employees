@@ -84,6 +84,8 @@ class Employees {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_metabox_hooks();
+		$this->define_cpt_and_tax_hooks();
 
 	}
 
@@ -123,6 +125,21 @@ class Employees {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-employees-admin.php';
 
 		/**
+		 * The class responsible for defining all actions relating to metaboxes.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-employees-admin-metaboxes.php';
+
+		/**
+		 * The class responsible for defining all actions relating to the employee custom post type.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-employees-admin-cpt-employee.php';
+
+		/**
+		 * The class responsible for defining all actions relating to the department taxonomy.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-employees-admin-tax-department.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
@@ -132,6 +149,11 @@ class Employees {
 		 * The class responsible for sanitizing user input
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-employees-sanitize.php';
+
+		/**
+		 * The class with methods shared by admin and public
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-employees-shared.php';
 
 		$this->loader = new Employees_Loader();
 		$this->sanitizer = new Employees_Sanitize();
@@ -169,18 +191,14 @@ class Employees {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'init', $plugin_admin, 'new_cpt_employees' );
-		$this->loader->add_action( 'init', $plugin_admin, 'new_taxonomy_department' );
 		$this->loader->add_filter( 'upload_mimes', $plugin_admin, 'custom_upload_mimes' );
 		$this->loader->add_filter( 'post_mime_types', $plugin_admin, 'add_mime_types' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_fields' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_sections' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
-		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_metaboxes' );
-		$this->loader->add_action( 'save_post_employees', $plugin_admin, 'validate_meta', 10, 2 );
-		$this->loader->add_action( 'plugin_action_links_' . $this->get_plugin_name(), $plugin_admin, 'link_settings' );
+		$this->loader->add_action( 'plugin_action_links_' . EMPLOYEES_FILE, $plugin_admin, 'link_settings' );
 		$this->loader->add_action( 'plugin_row_meta', $plugin_admin, 'link_row_meta', 10, 2 );
-		$this->loader->add_action( 'enter_title_here', $plugin_admin, 'change_title_text', 10, 2 );
-		$this->loader->add_action( 'edit_form_after_title', $plugin_admin, 'field_job_title', 10, 2 );
 
 	}
 
@@ -195,9 +213,9 @@ class Employees {
 
 		$plugin_public = new Employees_Public( $this->get_plugin_name(), $this->get_version() );
 
-		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+		$this->loader->add_filter( 'single_template', $plugin_public, 'single_cpt_template' );
 		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
 
 		/**
@@ -207,9 +225,47 @@ class Employees {
 		 *
 		 * @link 	http://nacin.com/2010/05/18/rethinking-template-tags-in-plugins/
 		 */
-		$this->loader->add_action( 'employeelist', $plugin_public, 'shortcode' );
+		$this->loader->add_action( 'employeelist', $plugin_public, 'list_employees' );
 
 	}
+
+	/**
+	 * Register all of the hooks related to metaboxes
+	 *
+	 * @since 		1.0.0
+	 * @access 		private
+	 */
+	private function define_metabox_hooks() {
+
+		$plugin_metaboxes = new Employees_Admin_Metaboxes( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'add_meta_boxes_employee', $plugin_metaboxes, 'add_metaboxes' );
+		$this->loader->add_action( 'save_post_employee', $plugin_metaboxes, 'validate_meta', 10, 2 );
+		$this->loader->add_action( 'edit_form_after_title', $plugin_metaboxes, 'metabox_job_title', 10, 2 );
+		$this->loader->add_action( 'add_meta_boxes_employee', $plugin_metaboxes, 'set_meta' );
+
+	} // define_metabox_hooks()
+
+	/**
+	 * Register all of the hooks related to metaboxes
+	 *
+	 * @since 		1.0.0
+	 * @access 		private
+	 */
+	private function define_cpt_and_tax_hooks() {
+
+		$plugin_cpt_employee = new Employees_CPT_Employee( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'init', $plugin_cpt_employee, 'new_cpt_employee' );
+		$this->loader->add_action( 'enter_title_here', $plugin_cpt_employee, 'change_title_text', 10, 2 );
+
+
+
+		$plugin_tax_department =new Employees_Tax_Department( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'init', $plugin_tax_department, 'new_taxonomy_department' );
+
+	} // define_cpt_and_tax_hooks()
 
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.

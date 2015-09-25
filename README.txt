@@ -12,6 +12,19 @@ Here is a short description of the plugin.  This should be no more than 150 char
 
 == Description ==
 
+
+
+Todo:
+* Default order by first letter of last name
+* If you choose a display order position already used by someone else, everyone else gets bumped down a slot.
+* Sort by department
+	* Example: executives want to be displayed in a particular order, but everyone else is displayed by first letter of last name.
+* If any employees have display order positions, those are displayed in their order first, followed by every one else by first letter of last name.
+* Shortcode can include department name, if one is specified. Can also include the department description.
+
+
+
+
 This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
 
 For backwards compatibility, if this section is missing, the full length of the short description will be used, and

@@ -4,8 +4,14 @@
 
 	$(function() {
 
-		//Opens the Media Library, assigns chosen vCard URL to input field, switches links
-		$( '#upload-vcard' ).on( 'click', function( e ) {
+		var field, upload, remove;
+
+		field = $( '[data-id="url-file"]' );
+		remove = $( '#remove-file' );
+		upload = $( '#upload-file' );
+
+		//Opens the Media Library, assigns chosen file URL to input field, switches links
+		upload.on( 'click', function( e ) {
 
 			// Stop the anchor's default behavior
 			e.preventDefault();
@@ -21,11 +27,11 @@
 
 			file_frame = wp.media.frames.file_frame = wp.media({
 				button: {
-					text: 'Choose vCard',
+					text: 'Choose File',
 				},
 				frame: 'select',
 				multiple: false,
-				title: 'Choose vCard'
+				title: 'Choose File'
 			});
 
 			file_frame.on( 'select', function() {
@@ -45,9 +51,9 @@
 
 				}*/
 
-				$( '#url-vcard' ).val( json.url );
-				$( '#upload-vcard' ).toggleClass( 'hide' );
-				$( '#remove-vcard' ).toggleClass( 'hide' );
+				field.val( json.url );
+				upload.toggleClass( 'hide' );
+				remove.toggleClass( 'hide' );
 
 			});
 
@@ -56,17 +62,17 @@
 		});
 
 		//Remove value from input, switch links
-		$( '#remove-vcard' ).on( 'click', function( e ) {
+		remove.on( 'click', function( e ) {
 
 			// Stop the anchor's default behavior
 			e.preventDefault();
 
 			// clear the value from the input
-			$( '#url-vcard' ).val('');
+			field.val('');
 
 			// change the link message
-			$( '#upload-vcard' ).toggleClass( 'hide' );
-			$( '#remove-vcard' ).toggleClass( 'hide' );
+			upload.toggleClass( 'hide' );
+			remove.toggleClass( 'hide' );
 
 		});
 

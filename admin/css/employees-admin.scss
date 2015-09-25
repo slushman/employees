@@ -10,3 +10,15 @@
 .hide {
 	display: none;
 }
+
+.employees_page_employees-help {
+	ul li {
+		list-style: disc;
+		margin-left: 1.5em;
+	}
+}
+
+.wrap-radios {
+	max-height: 175px;
+	overflow-y: scroll;
+}

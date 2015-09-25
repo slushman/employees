@@ -14,12 +14,18 @@
 
 ?><div class="employee-list-wrap"><?php
 
-foreach ( $items->posts as $item ) {
+do_action( 'employees-list-before' );
 
-	//pretty( $item );
+foreach ( $items as $item ) {
 
-	include( $this->get_single_template_path() );
+	do_action( 'employees-list-before-single' );
+
+	include $this->get_view( $args['view-single'] );
+
+	do_action( 'employees-list-after-single' );
 
 } // foreach
+
+do_action( 'employees-list-after' );
 
 ?></div>
