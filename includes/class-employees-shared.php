@@ -13,15 +13,6 @@
 class Employees_Shared {
 
 	/**
-	 * The plugin options.
-	 *
-	 * @since 		1.0.0
-	 * @access 		private
-	 * @var 		string 			$options    The plugin options.
-	 */
-	private $options;
-
-	/**
 	 * The ID of this plugin.
 	 *
 	 * @since 		1.0.0
@@ -155,15 +146,16 @@ class Employees_Shared {
 	 */
 	private function get_ordered_employees( $params ) {
 
-		$params['meta_key'] = 'display-order';
-		$params['orderby'] 	= 'meta_value_num title';
-		$args 				= $this->set_args( $params );
+		$params['orderby'] 					= 'meta_value_num title';
+		$params['meta_query'][0]['compare'] = '>';
+		$params['meta_query'][0]['key'] 	= 'display-order';
+		$params['meta_query'][0]['value'] 	= 0;
+		$args 								= $this->set_args( $params );
 
 		if ( empty( $args ) ) { return FALSE; }
 
-		apply_filters( $this->plugin_name . '-get-ordered-employees-query-args', $args );
-
-		$query = new WP_Query( $args );
+		$args 	= apply_filters( $this->plugin_name . '-ordered-query-args', $args );
+		$query 	= new WP_Query( $args );
 
 		return $query;
 
@@ -182,9 +174,8 @@ class Employees_Shared {
 
 		if ( empty( $args ) ) { return FALSE; }
 
-		apply_filters( $this->plugin_name . '-get-unordered-employees-query-args', $args );
-
-		$query = new WP_Query( $args );
+		$args 	= apply_filters( $this->plugin_name . '-unordered-query-args', $args );
+		$query 	= new WP_Query( $args );
 
 		return $query;
 
@@ -218,21 +209,15 @@ class Employees_Shared {
 
 		if ( ! empty( $params['department'] ) ) {
 
-			$args['tax_query'][]['field'] 		= 'slug';
-			$args['tax_query'][]['taxonomy'] 	= 'department';
-			$args['tax_query'][]['terms'] 		= $params['department'];
+			$args['tax_query'][0]['field'] 		= 'slug';
+			$args['tax_query'][0]['taxonomy'] 	= 'department';
+			$args['tax_query'][0]['terms'] 		= $params['department'];
 
 			unset( $args['department'] );
 
 		}
 
-		if ( empty( $params ) ) { return $args; }
-
-		foreach ( $params as $key => $value ) {
-
-			$args[$key] = $value;
-
-		}
+		$args = wp_parse_args( $params, $args );
 
 		return $args;
 

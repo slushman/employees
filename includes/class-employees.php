@@ -84,6 +84,7 @@ class Employees {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_template_hooks();
 		$this->define_metabox_hooks();
 		$this->define_cpt_and_tax_hooks();
 
@@ -144,6 +145,16 @@ class Employees {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-employees-public.php';
+
+		/**
+		 * The class responsible for defining all actions creating the templates.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-employees-template-functions.php';
+
+		/**
+		 * The class responsible for all global functions.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/employees-global-functions.php';
 
 		/**
 		 * The class responsible for sanitizing user input
@@ -217,6 +228,9 @@ class Employees {
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_filter( 'single_template', $plugin_public, 'single_cpt_template' );
 		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
+		$this->loader->add_action( 'employees-before-loop-content', $plugin_public, 'register_shortcodes' );
+
+
 
 		/**
 		 * Action instead of template tag.
@@ -228,6 +242,38 @@ class Employees {
 		$this->loader->add_action( 'employeelist', $plugin_public, 'list_employees' );
 
 	}
+
+	/**
+	 * Register all of the hooks related to the templates.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_template_hooks() {
+
+		$plugin_templates = new Employees_Template_Functions( $this->get_plugin_name(), $this->get_version() );
+
+		// Loop
+		$this->loader->add_action( 'employees-before-loop', 		$plugin_templates, 'loop_wrap_start', 10 );
+		$this->loader->add_action( 'employees-before-loop-content', $plugin_templates, 'loop_content_wrap_start', 10, 2 );
+		$this->loader->add_action( 'employees-before-loop-content', $plugin_templates, 'loop_content_link_start', 15, 3 );
+		$this->loader->add_action( 'employees-loop-content', 		$plugin_templates, 'loop_content_image', 10, 2 );
+		$this->loader->add_action( 'employees-loop-content', 		$plugin_templates, 'loop_content_name', 15, 2 );
+		$this->loader->add_action( 'employees-loop-content', 		$plugin_templates, 'loop_content_job_title', 20, 2 );
+		$this->loader->add_action( 'employees-after-loop-content', 	$plugin_templates, 'loop_content_link_end', 10, 2 );
+		$this->loader->add_action( 'employees-after-loop-content', 	$plugin_templates, 'loop_content_wrap_end', 90, 2 );
+		$this->loader->add_action( 'employees-after-loop', 			$plugin_templates, 'loop_wrap_end', 10 );
+
+
+		// Single
+		$this->loader->add_action( 'employees-single-content', $plugin_templates, 'single_employee_thumbnail', 10 );
+		$this->loader->add_action( 'employees-single-content', $plugin_templates, 'single_employee_name', 15 );
+		$this->loader->add_action( 'employees-single-content', $plugin_templates, 'single_employee_job_title', 20 );
+		$this->loader->add_action( 'employees-single-content', $plugin_templates, 'single_employee_content', 25 );
+		$this->loader->add_action( 'employees-single-content', $plugin_templates, 'single_employee_contact_info', 30 );
+		$this->loader->add_action( 'employees-single-content', $plugin_templates, 'single_employee_comms', 35 );
+
+	} // define_template_hooks()
 
 	/**
 	 * Register all of the hooks related to metaboxes
@@ -307,4 +353,4 @@ class Employees {
 		return $this->version;
 	}
 
-}
+} // class

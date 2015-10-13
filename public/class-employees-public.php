@@ -88,24 +88,6 @@ class Employees_Public {
 	}
 
 	/**
-	 * Returns an array of the featured image details
-	 *
-	 * @param 	int 	$postID 		The post ID
-	 * @return 	array 					Array of info about the featured image
-	 */
-	public function get_featured_image_info( $postID ) {
-
-		if ( empty( $postID ) ) { return FALSE; }
-
-		$imageID = get_post_thumbnail_id( $postID );
-
-		if ( empty( $imageID ) ) { return FALSE; }
-
-		return wp_prepare_attachment_for_js( $imageID );
-
-	} // get_featured_image_info()
-
-	/**
 	 * Returns the requested SVG
 	 *
 	 * @param 	string 		$svg 		The name of the icon to return
@@ -146,50 +128,6 @@ class Employees_Public {
 	} // get_svg()
 
 	/**
-	 * Returns the path to the employees list view file
-	 *
-	 * Looks for the file in these directories, in this order:
-	 * 		Current theme
-	 * 		Parent theme
-	 * 		Current theme templates folder
-	 * 		Parent theme templates folder
-	 * 		This plugin
-	 *
-	 * To use a custom list template in a theme,
-	 * create the view in a file named "now-hiring-jobs-list.php"
-	 * in one of the locations listed above.
-	 *
-	 * To use a custom single job opening template in a theme,
-	 * create the view in a file named "now-hiring-jobs-single.php"
-	 * in one of the locations listed above.
-	 *
-	 * @param 	string 		$name 			The name of a view file
-	 * @return 	string 						The path to the view
-	 */
-	private function get_view( $name ) {
-
-		$view = '';
-
-		$checks[] = "{$name}.php";
-		$checks[] = "{$name}.php";
-		$checks[] = "/templates/{$name}.php";
-		$checks[] = "/templates/{$name}.php";
-
-		apply_filters( $this->plugin_name . '-view-paths', $checks );
-
-		$view = locate_template( $checks, TRUE );
-
-		if ( empty( $view ) ) {
-
-			$view = plugin_dir_path( __FILE__ ) . 'partials' . '/' . $name . '.php';
-
-		}
-
-		return $view;
-
-	} // get_view()
-
-	/**
 	 * Processes shortcode employeelist
 	 *
 	 * @param 	array 	$atts 		Shortcode attributes
@@ -199,17 +137,17 @@ class Employees_Public {
 
 		ob_start();
 
-		$defaults['view-list'] 		= $this->plugin_name . '-list';
+		$defaults['department'] 	= '';
+		$defaults['loop-template'] 	= $this->plugin_name . '-loop';
 		$defaults['order'] 			= 'ASC';
 		$defaults['quantity'] 		= 100;
-		$defaults['view-single'] 	= $this->plugin_name . '-single';
 		$args						= shortcode_atts( $defaults, $atts, 'employeelist' );
 		$shared 					= new Employees_Shared( $this->plugin_name, $this->version );
 		$items 						= $shared->get_employees( $args );
 
 		if ( is_array( $items ) || is_object( $items ) ) {
 
-			$include = $this->get_view( $args['view-list'] );
+			$include = employees_get_template( $args['loop-template'] );
 
 			include $include;
 
@@ -229,8 +167,6 @@ class Employees_Public {
 
 	/**
 	 * Registers all shortcodes at once
-	 *
-	 * @return [type] [description]
 	 */
 	public function register_shortcodes() {
 
@@ -253,7 +189,9 @@ class Employees_Public {
 	} // set_meta()
 
 	/**
-	 * Adds a default single view template for an employee
+	 * Adds a default single employee template to the template hierarchy.
+	 *
+	 * @see 	https://developer.wordpress.org/themes/basics/template-hierarchy/
 	 *
 	 * @param 	string 		$template 		The name of the template
 	 * @return 	mixed 						The single template
@@ -266,7 +204,7 @@ class Employees_Public {
 
 	    if ( 'employee' == $post->post_type ) {
 
-			$return = $this->get_view( 'single-employee' );
+			$return = employees_get_template( 'single-employee' );
 
 		}
 

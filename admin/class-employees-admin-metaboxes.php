@@ -73,7 +73,7 @@ class Employees_Admin_Metaboxes {
 
 		add_meta_box(
 			'employees_location_info',
-			apply_filters( $this->plugin_name . 'metabox-location-info-title', esc_html__( 'Location Info', 'employees' ) ),
+			apply_filters( $this->plugin_name . '-metabox-location-info-title', esc_html__( 'Location Info', 'employees' ) ),
 			array( $this, 'metabox' ),
 			'employee',
 			'normal',
@@ -85,7 +85,7 @@ class Employees_Admin_Metaboxes {
 
 		add_meta_box(
 			'employees_contact_info',
-			apply_filters( $this->plugin_name . 'metabox-contact-info-title', esc_html__( 'Contact Info', 'employees' ) ),
+			apply_filters( $this->plugin_name . '-metabox-contact-info-title', esc_html__( 'Contact Info', 'employees' ) ),
 			array( $this, 'metabox' ),
 			'employee',
 			'normal',
@@ -97,7 +97,7 @@ class Employees_Admin_Metaboxes {
 
 		add_meta_box(
 			'employees_display_order',
-			apply_filters( $this->plugin_name . 'metabox-display-order-title', esc_html__( 'Display Order', 'employees' ) ),
+			apply_filters( $this->plugin_name . '-metabox-display-order-title', esc_html__( 'Display Order', 'employees' ) ),
 			array( $this, 'metabox' ),
 			'employee',
 			'side',
@@ -109,7 +109,7 @@ class Employees_Admin_Metaboxes {
 
 		add_meta_box(
 			'employees_links',
-			apply_filters( $this->plugin_name . 'metabox-links-title', esc_html__( 'Links', 'employees' ) ),
+			apply_filters( $this->plugin_name . '-metabox-links-title', esc_html__( 'Links', 'employees' ) ),
 			array( $this, 'metabox' ),
 			'employee',
 			'side',
@@ -143,13 +143,31 @@ class Employees_Admin_Metaboxes {
 		foreach ( $nonces as $nonce ) {
 
 			if ( ! isset( $posted[$nonce] ) ) { $nonce_check++; }
-			if ( ! wp_verify_nonce( $posted[$nonce], $this->plugin_name ) ) { $nonce_check++; }
+			if ( isset( $posted[$nonce] ) && ! wp_verify_nonce( $posted[$nonce], $this->plugin_name ) ) { $nonce_check++; }
 
 		}
 
 		return $nonce_check;
 
 	} // check_nonces()
+
+	public function get_display_order() {
+
+		$options = get_option( $this->plugin_name . '-options' );
+
+		if ( empty( $options['display-order'] ) ) {
+
+			$order = array();
+
+		} else {
+
+			$order = $options['display-order'];
+
+		}
+
+		return $order;
+
+	} // get_display_order()
 
 	/**
 	 * Returns an array of the all the metabox fields and their respective types
@@ -257,6 +275,125 @@ class Employees_Admin_Metaboxes {
 		$this->meta = get_post_custom( $post->ID );
 
 	} // set_meta()
+
+	/**
+	 * Updates the display order, independently of the other metadata
+	 *
+	 * @param  [type] $post_id [description]
+	 * @param  [type] $post    [description]
+	 * @param  [type] $update  [description]
+	 * @return [type]          [description]
+	 */
+	public function update_display_order( $post_id, $post, $update ) {
+
+		if ( ! isset( $_POST['nonce_employees_display_order'] ) ) { return; }
+		if ( ! wp_verify_nonce( $_POST['nonce_employees_display_order'], $this->plugin_name ) ) { return; }
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return $post_id; }
+		if ( ! current_user_can( 'edit_post', $post_id ) ) { return $post_id; }
+		if ( 'employee' != $post->post_type ) { return; }
+
+		//wp_die( '<pre>' . print_r( $_POST ) . '</pre>' );
+
+		$sanitizer 	= new Employees_Sanitize();
+
+		$sanitizer->set_data( $_POST['display-order'] );
+		$sanitizer->set_type( 'number' );
+
+		$new_value 	= $sanitizer->clean();
+		$order 		= $this->get_display_order();
+
+		//wp_die( '<pre>' . print_r( $order ) . '</pre>' );
+
+		if ( in_array( $new_value, $order ) ) {
+
+
+
+		} else {
+
+			$key = $new_value - 1;
+
+			$order[$key]['id'] 		= $post->ID;
+			$order[$key]['title'] 	= $post->post_title;
+			$order[$key]['order'] 	= $new_value;
+
+		}
+
+		wp_die( '<pre>' . print_r( $order ) . '</pre>' );
+
+		/*$updated 	= array();
+
+		foreach ( $options as $key => $option ) {
+
+			if ( 'display-order' === $key ) {
+
+				$updated['display-order'] = $new_value;
+
+			} else {
+
+				$updated[$key] = $option;
+
+			}
+
+		}
+
+		update_option( $this->plugin_name . '-options', $updated );
+
+		unset( $sanitizer );
+*/
+
+
+
+
+		/*$order 		= $options['display-order'];
+		$diff 		= array_diff( $order, $new_value );
+
+		if ( empty( $diff ) ) { wp_die( 'nothing changed' ); }
+
+
+
+		//
+
+		if ( $update ) {
+
+			// what to do if its an updated post
+
+		} else {
+
+			// what to do if its a new post
+
+		}
+*/
+
+
+
+		/*
+		$value 		= ( empty( $this->meta['display-order'][0] ) ? '' : $this->meta['display-order'][0] );
+		$options 	= get_option( $this->plugin_name . '-options' );
+
+		if ( empty( $value ) ) {
+
+			// add one number higher to the option
+
+		}
+
+		$sanitizer 	= new Employees_Sanitize();
+
+		$sanitizer->set_data( $_POST['display-order'] );
+		$sanitizer->set_type( 'int' );
+
+		$new_value = $sanitizer->clean();
+
+		if ( in_array( $new_value, $order ) ) {
+
+			$new = array( $new_value );
+			$save = array_diff( $new, $option['display-order'] );
+
+		}
+
+
+		*/
+
+	} // update_display_order()
 
 	/**
 	 * Saves metabox data

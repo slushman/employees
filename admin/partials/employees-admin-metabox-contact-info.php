@@ -32,7 +32,7 @@ apply_filters( $this->plugin_name . '-field-' . $atts['id'], $atts );
 
 ?><p><?php
 
-include( plugin_dir_path( __FILE__ ) . 'employees-admin-field-text.php' );
+include( plugin_dir_path( __FILE__ ) . $this->plugin_name . '-admin-field-text.php' );
 
 ?></p><?php
 
@@ -52,11 +52,11 @@ if ( ! empty( $this->meta[$atts['id']][0] ) ) {
 
 }
 
-apply_filters( $this->plugin_name . '-field-phone-cell', $atts );
+apply_filters( $this->plugin_name . '-field-' . $atts['id'], $atts );
 
 ?><p><?php
 
-include( plugin_dir_path( __FILE__ ) . 'employees-admin-field-text.php' );
+include( plugin_dir_path( __FILE__ ) . $this->plugin_name . '-admin-field-text.php' );
 
 ?></p><?php
 
@@ -76,11 +76,11 @@ if ( ! empty( $this->meta[$atts['id']][0] ) ) {
 
 }
 
-apply_filters( $this->plugin_name . '-field-fax-number', $atts );
+apply_filters( $this->plugin_name . '-field-' . $atts['id'], $atts );
 
 ?><p><?php
 
-include( plugin_dir_path( __FILE__ ) . 'employees-admin-field-text.php' );
+include( plugin_dir_path( __FILE__ ) . $this->plugin_name . '-admin-field-text.php' );
 
 ?></p><?php
 
@@ -100,11 +100,11 @@ if ( ! empty( $this->meta[$atts['id']][0] ) ) {
 
 }
 
-apply_filters( $this->plugin_name . '-field-email-address', $atts );
+apply_filters( $this->plugin_name . '-field-' . $atts['id'], $atts );
 
 ?><p><?php
 
-include( plugin_dir_path( __FILE__ ) . 'employees-admin-field-text.php' );
+include( plugin_dir_path( __FILE__ ) . $this->plugin_name . '-admin-field-text.php' );
 
 ?></p><?php
 
@@ -126,10 +126,10 @@ if ( ! empty( $this->meta[$atts['id']][0] ) ) {
 
 }
 
-apply_filters( $this->plugin_name . '-field-url-vcard', $atts );
+apply_filters( $this->plugin_name . '-field-' . $atts['id'], $atts );
 
 ?><p><?php
 
-include( plugin_dir_path( __FILE__ ) . 'employees-admin-field-file-upload.php' );
+include( plugin_dir_path( __FILE__ ) . $this->plugin_name . '-admin-field-file-upload.php' );
 
 ?></p>

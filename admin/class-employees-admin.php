@@ -368,18 +368,6 @@ class Employees_Admin {
 	} // link_row_meta()
 
 	/**
-	 * Displays the help page
-	 *
-	 * @since 		1.0.0
-	 * @return 		void
-	 */
-	public function page_help() {
-
-		include( plugin_dir_path( __FILE__ ) . 'partials/employees-admin-page-help.php' );
-
-	} // page_help()
-
-	/**
 	 * Displays the options page
 	 *
 	 * @since 		1.0.0
