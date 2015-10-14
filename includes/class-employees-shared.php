@@ -45,6 +45,35 @@ class Employees_Shared {
 	} // __construct()
 
 	/**
+	 * Returns a cache name based on the attributes.
+	 *
+	 * @param 	array 		$args 			The WP_Query args
+	 * @param   string 		$cache 			Optional cache name
+	 * @return 	string 						The cache name
+	 */
+	private function get_cache_name( $args, $cache = '' ) {
+
+		if ( empty( $args ) ) { return ''; }
+
+		$return = $this->plugin_name . '_employees';
+
+		if ( ! empty( $cache ) ) {
+
+			$return = $this->plugin_name . $cache . '_employees';
+
+		}
+
+		if ( ! empty( $args['department'] ) ) {
+
+			$return = $this->plugin_name . $cache . $args['department'] . '_employees';
+
+		}
+
+		return $return;
+
+	} // get_cache_name()
+
+	/**
 	 * Returns a post object of employee posts
 	 *
 	 * Check for cache first, if it exists, returns that
@@ -60,15 +89,8 @@ class Employees_Shared {
 	public function get_employees( $params = array(), $cache = '' ) {
 
 		$return 	= '';
-		$cache_name = $this->plugin_name . '_posts';
-
-		if ( ! empty( $cache ) ) {
-
-			$cache_name = $this->plugin_name . $cache . '_posts';
-
-		}
-
-		$return = wp_cache_get( $cache_name, $this->plugin_name . '_posts' );
+		$cache_name = $this->get_cache_name( $params, $cache );
+		$return 	= wp_cache_get( $cache_name, $this->plugin_name . '_posts' );
 
 		if ( false === $return ) {
 
