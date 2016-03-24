@@ -7,12 +7,10 @@
  * @package Employees
  */
 
-if ( ! empty( $meta['job-title'][0] ) ) {
+if ( empty( $meta['job-title'][0] ) ) { return; }
 
-	?><h2 class="<?php echo esc_attr( 'job-title' ); ?> category" itemprop="jobTitle"><?php
+?><h2 class="<?php echo esc_attr( 'job-title' ); ?> category" itemprop="jobTitle"><?php
 
-		esc_html_e( $meta['job-title'][0] );
+	esc_html_e( $meta['job-title'][0] );
 
-	?></h2><?php
-
-}
+?></h2>
