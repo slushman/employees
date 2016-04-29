@@ -289,6 +289,8 @@ class Employees_Admin_Metaboxes {
 		$return[] = 'Sir';
 		$return[] = 'Sister';
 
+		$return = apply_filters( 'employees-special-honorifics', $return );
+
 		return $return;
 
 	} // get_special_honorifics()

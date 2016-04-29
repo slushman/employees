@@ -345,6 +345,7 @@ class Employees_Admin {
 		$options = array();
 
 		$options[] = array( 'message-none-found', 'text', '' );
+		$options[] = array( 'custom-slug', 'text', 'employee' );
 		$options[] = array( 'default-loop-nav', 'select', 'no-navigation' );
 
 		return $options;
@@ -427,6 +428,19 @@ class Employees_Admin {
 				'description' 	=> 'This message displays on the page if no job postings are found.',
 				'id' 			=> 'message-none-found',
 				'value' 		=> 'No one actually works here...',
+			)
+		);
+
+		add_settings_field(
+			'custom-slug',
+			apply_filters( $this->plugin_name . '-label-messages-custom-slug', esc_html__( 'Customize the slug', 'employees' ) ),
+			array( $this, 'field_text' ),
+			$this->plugin_name,
+			$this->plugin_name . '-messages',
+			array(
+				'description' 	=> 'Change the slug used in the URL for employee pages.',
+				'id' 			=> 'custom-slug',
+				'value' 		=> 'employee',
 			)
 		);
 

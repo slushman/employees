@@ -7,6 +7,19 @@
  * @package Employees
  */
 
+if ( empty( $meta['address'][0] )
+	&& empty( $meta['address2'][0] )
+	&& empty( $meta['city'][0] )
+	&& empty( $meta['state'][0] )
+	&& empty( $meta['zipcode'][0] )
+	&& empty( $meta['building'][0] )
+	&& empty( $meta['office'][0] )
+	) {
+
+	return;
+
+}
+
 ?><h2><?php esc_html_e( apply_filters( 'employees-single-post-label-contact-info', 'Contact Information' ), 'employees' ); ?></h2>
 <address class="contact-info adr" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"><?php
 

@@ -15,6 +15,15 @@
 class Employees_CPT_Employee {
 
 	/**
+	 * The plugin options.
+	 *
+	 * @since 		1.0.0
+	 * @access 		private
+	 * @var 		string 			$options    The plugin options.
+	 */
+	private $options;
+
+	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
@@ -40,7 +49,9 @@ class Employees_CPT_Employee {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-	}
+		$this->set_options();
+
+	} // __construct()
 
 	/**
 	 * Registers additional image sizes
@@ -309,7 +320,7 @@ class Employees_CPT_Employee {
 		$opts['rewrite']['ep_mask']						= EP_PERMALINK;
 		$opts['rewrite']['feeds']						= FALSE;
 		$opts['rewrite']['pages']						= TRUE;
-		$opts['rewrite']['slug']						= esc_html__( $cpt_name, 'employees' );
+		$opts['rewrite']['slug']						= strtolower( $single );
 		$opts['rewrite']['with_front']					= TRUE;
 
 		$opts = apply_filters( 'employees-cpt-employee-options', $opts );
@@ -317,5 +328,14 @@ class Employees_CPT_Employee {
 		register_post_type( $cpt_name, $opts );
 
 	} // new_cpt_employee()
+
+	/**
+	 * Sets the class variable $options
+	 */
+	private function set_options() {
+
+		$this->options = get_option( $this->plugin_name . '-options' );
+
+	} // set_options()
 
 } // class

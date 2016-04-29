@@ -61,7 +61,7 @@ if ( ! empty( $this->meta[$atts['id']][0] ) ) {
 
 }
 
-apply_filters( $this->plugin_name . '-field-honorific-prefix', $atts );
+$atts = apply_filters( $this->plugin_name . '-field-honorific-prefix', $atts );
 
 include( plugin_dir_path( __FILE__ ) . 'view-field-select.php' );
 
@@ -83,7 +83,7 @@ if ( ! empty( $this->meta[$atts['id']][0] ) ) {
 
 }
 
-apply_filters( $this->plugin_name . '-field-title-first-name', $atts );
+$atts = apply_filters( $this->plugin_name . '-field-title-first-name', $atts );
 
 include( plugin_dir_path( __FILE__ ) . 'view-field-text.php' );
 
@@ -105,7 +105,7 @@ if ( ! empty( $this->meta[$atts['id']][0] ) ) {
 
 }
 
-apply_filters( $this->plugin_name . '-field-title-last-name', $atts );
+$atts = apply_filters( $this->plugin_name . '-field-title-last-name', $atts );
 
 include( plugin_dir_path( __FILE__ ) . 'view-field-text.php' );
 
@@ -146,7 +146,7 @@ if ( ! empty( $this->meta[$atts['id']][0] ) ) {
 
 }
 
-apply_filters( $this->plugin_name . '-field-honorific-suffix', $atts );
+$atts = apply_filters( $this->plugin_name . '-field-honorific-suffix', $atts );
 
 include( plugin_dir_path( __FILE__ ) . 'view-field-select.php' );
 

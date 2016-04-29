@@ -236,9 +236,6 @@ class Employees_Public {
 		$defaults['quantity'] 		= 100;
 		$defaults['show'] 			= array( 'image', 'name', 'job_title' );
 		$args						= shortcode_atts( $defaults, $atts, 'employeelist' );
-
-		showme(  );
-
 		$args 						= apply_filters( 'employees_list_shortcode_args', $args );
 		$shared 					= new Employees_Shared( $this->plugin_name, $this->version );
 		$items 						= $shared->query( $args );

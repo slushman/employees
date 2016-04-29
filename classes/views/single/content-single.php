@@ -25,6 +25,13 @@ do_action( 'employees-before-single', $meta );
 
 		/**
 		 * employees-single-employee-content hook
+		 *
+		 * @hooked 		single_employee_thumbnail 		10
+		 * @hooked 		single_employee_name 			15
+		 * @hooked 		single_employee_job_title 		20
+		 * @hooked 		single_employee_description 	25
+		 * @hooked 		single_employee_contact_info 	30
+		 * @hooked 		single_employee_comms 			35
 		 */
 		do_action( 'employees-single-content', '', $meta );
 

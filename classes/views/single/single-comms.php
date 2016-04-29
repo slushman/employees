@@ -7,6 +7,17 @@
  * @package Employees
  */
 
+if ( empty( $meta['email-address'][0] )
+	&& empty( $meta['phone-office'][0] )
+	&& empty( $meta['phone-cell'][0] )
+	&& empty( $meta['url-vcard'][0] )
+	&& empty( $meta['fax-number'][0] )
+	) {
+
+	return;
+
+}
+
 ?><ul class="employee-comms"><?php
 
 if ( ! empty( $meta['email-address'][0] ) ) {
@@ -65,20 +76,20 @@ if ( ! empty( $meta['phone-cell'][0] ) ) {
 
 }
 
-if ( ! empty( $meta['url-linkedin'][0] ) ) {
+if ( ! empty( $meta['fax-number'][0] ) ) {
 
-	$linkedin = esc_url( $meta['url-linkedin'][0], 'employees' );
+	$fax = esc_html__( $meta['fax-number'][0], 'employees' );
 
-	?><li>
-		<span class="employee-svg"><?php echo employees_get_svg( 'linkedin' ); ?></span> <a aria-label="LinkedIn Profile" class="url" href="<?php
+	?><li class="tel">
+		<span class="dashicons dashicons-smartphone"></span> <span class="type"><?php esc_html_e( 'Fax Number', 'employees' ); ?></span> <?php
 
-			echo $linkedin;
+			esc_html_e( 'Fax Number', 'employees' );
 
-		?>" itemprop="url" rel="me"><?php
+		?>: <span aria-label="Fax Number"><?php
 
-			esc_html_e( 'LinkedIn Profile', 'employees' );
+			echo $fax;
 
-		?></a>
+		?></span>
 	</li><?php
 
 }
