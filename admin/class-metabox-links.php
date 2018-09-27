@@ -21,7 +21,7 @@ class Metabox_Links extends \Employees\Admin\Metabox {
 		$this->set_fields( $fields );
 		$this->set_nonce( 'nonce_employee_links' );
 
-		$check_fields = array();
+		$metabox_fields = array();
 		$links 	= array();
 		$links[] = array( 'Facebook', __( 'Facebook', 'employees' ) );
 		$links[] = array( 'Flickr', __( 'Flickr', 'employees' ) );
@@ -42,7 +42,7 @@ class Metabox_Links extends \Employees\Admin\Metabox {
 			$field_args['attributes'] 			= array();
 			$field_args['properties'] 			= array();
 
-			$field_args['attributes']['id'] 	= 'url-' . $link[0];
+			$field_args['attributes']['id'] 	= 'url' . $link[0];
 			$field_args['attributes']['type'] 	= 'url';
 			$field_args['properties']['label'] 	= $link[1];
 

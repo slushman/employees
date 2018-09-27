@@ -50,6 +50,8 @@ class CPT_Employee_Columns {
 
 		if ( empty( $post_id ) ) { return; }
 
+		$postMeta = get_post_meta( $post_id );
+
 		if ( 'departments' === $column_name ) {
 
 			$terms = get_the_terms( $post_id, 'department', array() );
@@ -66,11 +68,9 @@ class CPT_Employee_Columns {
 
 		}
 
-		if ( 'display-order' === $column_name ) {
+		if ( 'displayOrder' === $column_name ) {
 
-			$order = get_post_meta( $post_id, 'display-order', true );
-
-			echo $order;
+			echo empty( $postMeta['displayOrder'][0] ) ? '' : $postMeta['displayOrder'][0];
 
 		}
 
@@ -82,30 +82,24 @@ class CPT_Employee_Columns {
 
 		}
 
-		if ( 'job-title' === $column_name ) {
+		if ( 'jobTitle' === $column_name ) {
 
-			$job_title = get_post_meta( $post_id, 'job-title', true );
-
-			echo $job_title;
+			echo empty( $postMeta['jobTitle'][0] ) ? '' : $postMeta['jobTitle'][0];
 
 		}	
 
-		if ( 'name-first' === $column_name ) {
-
-			$first = get_post_meta( $post_id, 'name-first', true );
+		if ( 'nameFirst' === $column_name ) {
 
 			echo '<a href="' . esc_url( get_edit_post_link( $post_id ) ) .  '">';
-			echo $first;
+			echo empty( $postMeta['nameFirst'][0] ) ? '' : $postMeta['nameFirst'][0];
 			echo '</a>';
 
 		}
 
-		if ( 'name-last' === $column_name ) {
-
-			$last = get_post_meta( $post_id, 'name-last', true );
+		if ( 'nameLast' === $column_name ) {
 
 			echo '<a href="' . esc_url( get_edit_post_link( $post_id ) ) .  '">';
-			echo $last;
+			echo empty( $postMeta['nameLast'][0] ) ? '' : $postMeta['nameLast'][0];
 			echo '</a>';
 
 		}
@@ -133,11 +127,11 @@ class CPT_Employee_Columns {
 
 				$( document ).on( 'heartbeat-tick', function( e, data ) {
 
-					if ( ! data['honorific'] && ! data['first-name'] && ! data['last-name'] ) { return; }
+					if ( ! data['prefix'] && ! data['firstName'] && ! data['lastName'] ) { return; }
 
-					console.log( data['honorific'] );
-					console.log( data['first-name'] );
-					console.log( data['last-name'] );
+					console.log( data['prefix'] );
+					console.log( data['firstName'] );
+					console.log( data['lastMame'] );
 
 				});
 
@@ -161,28 +155,28 @@ class CPT_Employee_Columns {
 		if ( ! is_admin() ) { return $vars; }
 		if ( ! isset( $vars['post_type'] ) || 'employee' !== $vars['post_type'] ) { return $vars; }
 
-		if ( isset( $vars['orderby'] ) && 'display-order' === $vars['orderby'] ) {
+		if ( isset( $vars['orderby'] ) && 'displayOrder' === $vars['orderby'] ) {
 
 			$vars = array_merge( $vars, array(
-				'meta_key' => 'display-order',
+				'meta_key' => 'displayOrder',
 				'orderby' => 'meta_value_num'
 			) );
 
 		}
 
-		if ( isset( $vars['orderby'] ) && 'name-first' === $vars['orderby'] ) {
+		if ( isset( $vars['orderby'] ) && 'nameFirst' === $vars['orderby'] ) {
 
 			$vars = array_merge( $vars, array(
-				'meta_key' => 'name-first',
+				'meta_key' => 'nameFirst',
 				'orderby' => 'meta_value'
 			) );
 
 		}
 
-		if ( isset( $vars['orderby'] ) && 'name-last' === $vars['orderby'] ) {
+		if ( isset( $vars['orderby'] ) && 'nameLast' === $vars['orderby'] ) {
 
 			$vars = array_merge( $vars, array(
-				'meta_key' => 'name-last',
+				'meta_key' => 'nameLast',
 				'orderby' => 'meta_value'
 			) );
 
@@ -205,11 +199,11 @@ class CPT_Employee_Columns {
 
 		$new['cb'] 				= '<input type="checkbox" />';
 		$new['headshot'] 		= __( 'Headshot', 'employees' );
-		$new['name-first'] 		= __( 'First Name', 'employees' );
-		$new['name-last'] 		= __( 'Last Name', 'employees' );
-		$new['job-title'] 		= __( 'Job Title', 'employees' );
+		$new['nameFirst'] 		= __( 'First Name', 'employees' );
+		$new['nameLast'] 		= __( 'Last Name', 'employees' );
+		$new['jobTitle'] 		= __( 'Job Title', 'employees' );
 		$new['departments'] 	= __( 'Departments', 'employees' );
-		$new['display-order'] 	= __( 'Display Order', 'employees' );
+		$new['displayOrder'] 	= __( 'Display Order', 'employees' );
 		$new['date'] 			= __( 'Date' );
 
 		return $new;
@@ -226,9 +220,9 @@ class CPT_Employee_Columns {
 	 */
 	public function sortable_columns( $sortables ) {
 
-		$sortables['name-first'] 	= 'display-order';
-		$sortables['name-last'] 	= 'display-order';
-		$sortables['display-order'] = 'display-order';
+		$sortables['nameFirst'] 	= 'nameFirst';
+		$sortables['nameLast'] 		= 'nameLast';
+		$sortables['displayOrder'] 	= 'displayOrder';
 
 		return $sortables;
 

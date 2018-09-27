@@ -21,11 +21,13 @@ class Metabox_Order extends \Employees\Admin\Metabox {
 		$this->set_fields( $fields );
 		$this->set_nonce( 'nonce_employee_order' );
 
-		$field1['attributes']['id'] 			= 'display-order';
+		$metabox_fields = array();
+
+		$field1['attributes']['id'] 			= 'displayOrder';
 		$field1['attributes']['type'] 			= 'number';
 		$field1['properties']['description'] 	= esc_html__( 'Choose when this person appears in the display order.', 'employees' );
 		$field1['properties']['label'] 			= esc_html__( 'Display Order', 'employees' );
-		$metabox_fields[] 								= array( 'display-order', 'number', '', 'field_text', $field1 );
+		$metabox_fields[] 						= array( 'displayOrder', 'number', '', 'field_text', $field1 );
 
 		$this->set_metabox_fields( $metabox_fields );
 		$this->set_post_type( 'employee' );

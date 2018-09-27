@@ -22,15 +22,17 @@ class Metabox_Contact extends \Employees\Admin\Metabox {
 		$this->set_fields( $fields );
 		$this->set_nonce( 'nonce_employee_contact' );
 
-		$field1['attributes']['id'] 			= 'phone-office';
+		$metabox_fields = array();
+
+		$field1['attributes']['id'] 			= 'phoneOffice';
 		$field1['properties']['label'] 			= esc_html__( 'Office Phone', 'employees' );
 		$metabox_fields[] 						= array( 'phoneOffice', 'text', '', 'field_text', $field1 );
 
-		$field2['attributes']['id'] 			= 'phone-cell';
+		$field2['attributes']['id'] 			= 'phoneCell';
 		$field2['properties']['label'] 			= esc_html__( 'Cell Phone', 'employees' );
 		$metabox_fields[] 						= array( 'phoneCell', 'text', '', 'field_text', $field2 );
 
-		$field3['attributes']['id'] 			= 'fax-number';
+		$field3['attributes']['id'] 			= 'faxNumber';
 		$field3['properties']['label'] 			= esc_html__( 'Fax Number', 'employees' );
 		$metabox_fields[] 						= array( 'faxNumber', 'text', '', 'field_text', $field3 );
 
@@ -39,7 +41,7 @@ class Metabox_Contact extends \Employees\Admin\Metabox {
 		$field4['properties']['label'] 			= esc_html__( 'Email Address', 'employees' );
 		$metabox_fields[] 						= array( 'email', 'email', '', 'field_text', $field4 );
 
-		$field5['attributes']['id'] 			= 'url-vcard';
+		$field5['attributes']['id'] 			= 'urlVcard';
 		$field5['attributes']['type'] 			= 'url';
 		$field5['properties']['label'] 			= esc_html__( 'vCard URL', 'employees' );
 		$field5['properties']['label-remove'] 	= __( 'Remove file', 'employees' );

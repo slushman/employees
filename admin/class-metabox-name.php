@@ -21,15 +21,17 @@ class Metabox_Name extends \Employees\Admin\Metabox {
 		$this->set_fields( $fields );
 		$this->set_nonce( 'nonce_employee_name' );
 
+		$metabox_fields = array();
+
 		$field1['attributes']['id'] 	= 'prefix';
 		$field1['properties']['label'] 	= esc_html__( 'Prefix', 'employees' );
 		$metabox_fields[] 				= array( 'prefix', 'text', '', 'field_text', $field1 );
 
-		$field2['attributes']['id'] 	= 'name-first';
+		$field2['attributes']['id'] 	= 'nameFirst';
 		$field2['properties']['label'] 	= esc_html__( 'First Name', 'employees' );
 		$metabox_fields[] 				= array( 'nameFirst', 'text', '', 'field_text', $field2 );
 
-		$field3['attributes']['id'] 	= 'name-last';
+		$field3['attributes']['id'] 	= 'nameLast';
 		$field3['properties']['label'] 	= esc_html__( 'Last Name', 'employees' );
 		$metabox_fields[] 				= array( 'nameLast', 'text', '', 'field_text', $field3 );
 

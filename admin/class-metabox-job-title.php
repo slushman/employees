@@ -22,7 +22,9 @@ class Metabox_Job_Title extends \Employees\Admin\Metabox {
 		$this->set_fields( $fields );
 		$this->set_nonce( 'nonce_employee_title' );
 
-		$args_field1['attributes']['id'] 			= 'job-title';
+		$metabox_fields = array();
+
+		$args_field1['attributes']['id'] 			= 'jobTitle';
 		$args_field1['attributes']['type'] 			= 'text';
 		$args_field1['properties']['label'] 		= esc_html__( 'Job Title', 'employees' );
 		$metabox_fields[] 							= array( 'jobTitle', 'text', '', 'field_text', $args_field1 );

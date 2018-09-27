@@ -21,6 +21,8 @@ class Metabox_Location extends \Employees\Admin\Metabox {
 		$this->set_fields( $fields );
 		$this->set_nonce( 'nonce_employee_location' );
 
+		$metabox_fields = array();
+
 		$field1['attributes']['id'] 	= 'address1';
 		$field1['properties']['label'] 	= esc_html__( 'Street Address 1', 'employees' );
 		$metabox_fields[] 				= array( 'address1', 'text', '', 'field_text', $field1 );
@@ -99,7 +101,7 @@ class Metabox_Location extends \Employees\Admin\Metabox {
 		$field4['options'][] 			= array( 'value' => 'VI', 'label' => esc_html__( 'Virgin Islands', 'employees' ) );
 		$metabox_fields[] 				= array( 'state', 'select', '', 'field_select', $field4 );
 
-		$field5['attributes']['id'] 	= 'zip-code';
+		$field5['attributes']['id'] 	= 'zipCode';
 		$field5['properties']['label'] 	= esc_html__( 'Zip Code', 'employees' );
 		$metabox_fields[] 				= array( 'zipCode', 'text', '', 'field_text', $field5 );
 
@@ -107,7 +109,7 @@ class Metabox_Location extends \Employees\Admin\Metabox {
 		$field5['properties']['label'] 	= esc_html__( 'Building', 'employees' );
 		$metabox_fields[] 				= array( 'building', 'text', '', 'field_text', $field5 );
 
-		$field5['attributes']['id'] 	= 'office-number';
+		$field5['attributes']['id'] 	= 'officeNumber';
 		$field5['properties']['label'] 	= esc_html__( 'Office Number', 'employees' );
 		$metabox_fields[] 				= array( 'officeNumber', 'text', '', 'field_text', $field5 );
 

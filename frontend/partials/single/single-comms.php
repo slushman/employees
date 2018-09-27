@@ -8,10 +8,10 @@
  */
 
 if ( empty( $meta['email-address'][0] )
-	&& empty( $meta['phone-office'][0] )
-	&& empty( $meta['phone-cell'][0] )
-	&& empty( $meta['url-vcard'][0] )
-	&& empty( $meta['fax-number'][0] )
+	&& empty( $meta['phoneOffice'][0] )
+	&& empty( $meta['phoneCell'][0] )
+	&& empty( $meta['urlVcard'][0] )
+	&& empty( $meta['faxNumber'][0] )
 	) {
 
 	return;
@@ -38,10 +38,10 @@ if ( ! empty( $meta['email-address'][0] ) ) {
 
 }
 
-if ( ! empty( $meta['phone-office'][0] ) ) {
+if ( ! empty( $meta['phoneOffice'][0] ) ) {
 
-	$office 	= esc_html__( $meta['phone-office'][0], 'employees' );
-	$formatted 	= esc_html__( preg_replace( '/[^0-9]/', '', $meta['phone-office'][0] ), 'employees' );
+	$office 	= esc_html__( $meta['phoneOffice'][0], 'employees' );
+	$formatted 	= esc_html__( preg_replace( '/[^0-9]/', '', $meta['phoneOffice'][0] ), 'employees' );
 
 	?><li class="tel">
 		<span class="dashicons dashicons-phone"></span> <span class="type"><?php esc_html_e( 'Office', 'employees' ); ?></span> <?php
@@ -57,10 +57,10 @@ if ( ! empty( $meta['phone-office'][0] ) ) {
 
 }
 
-if ( ! empty( $meta['phone-cell'][0] ) ) {
+if ( ! empty( $meta['phoneCell'][0] ) ) {
 
-	$cell 		= esc_html__( $meta['phone-cell'][0], 'employees' );
-	$formatted 	= esc_html__( preg_replace( '/[^0-9]/', '', $meta['phone-cell'][0] ), 'employees' );
+	$cell 		= esc_html__( $meta['phoneCell'][0], 'employees' );
+	$formatted 	= esc_html__( preg_replace( '/[^0-9]/', '', $meta['phoneCell'][0] ), 'employees' );
 
 	?><li class="tel">
 		<span class="dashicons dashicons-smartphone"></span> <span class="type"><?php esc_html_e( 'Cell', 'employees' ); ?></span> <?php
@@ -76,9 +76,9 @@ if ( ! empty( $meta['phone-cell'][0] ) ) {
 
 }
 
-if ( ! empty( $meta['fax-number'][0] ) ) {
+if ( ! empty( $meta['faxNumber'][0] ) ) {
 
-	$fax = esc_html__( $meta['fax-number'][0], 'employees' );
+	$fax = esc_html__( $meta['faxNumber'][0], 'employees' );
 
 	?><li class="tel">
 		<span class="dashicons dashicons-smartphone"></span> <span class="type"><?php esc_html_e( 'Fax Number', 'employees' ); ?></span> <?php
@@ -94,9 +94,9 @@ if ( ! empty( $meta['fax-number'][0] ) ) {
 
 }
 
-if ( ! empty( $meta['url-vcard'][0] ) ) {
+if ( ! empty( $meta['urlVcard'][0] ) ) {
 
-	$vcard = esc_url( $meta['url-vcard'][0] );
+	$vcard = esc_url( $meta['urlVcard'][0] );
 
 	?><li>
 		<span class="dashicons dashicons-index-card"></span> <a aria-label="Download vCard" class="" href="<?php echo $vcard; ?>"><?php

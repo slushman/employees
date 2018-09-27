@@ -98,7 +98,7 @@ class Employees_Shared {
 	} // get_ids()
 
 	/**
-	 * Returns a WP_Query for employees with display-order
+	 * Returns a WP_Query for employees with displayOrder
 	 *
 	 * @param 	array 		$params 			Array of parameters for WP_Query
 	 * @return 	array 							Results of WP_Query
@@ -107,7 +107,7 @@ class Employees_Shared {
 
 		$params['orderby'] 					= 'meta_value_num title';
 		$params['meta_query'][0]['compare'] = '>';
-		$params['meta_query'][0]['key'] 	= 'display-order';
+		$params['meta_query'][0]['key'] 	= 'displayOrder';
 		$params['meta_query'][0]['value'] 	= 0;
 		$args 								= $this->set_args( $params );
 
@@ -121,7 +121,7 @@ class Employees_Shared {
 	} // get_ordered_employees()
 
 	/**
-	 * Returns a WP_Query for employees without display-order
+	 * Returns a WP_Query for employees without displayOrder
 	 *
 	 * @param 	array 		$params 			Array of parameters for WP_Query
 	 * @return 	array 							Results of WP_Query

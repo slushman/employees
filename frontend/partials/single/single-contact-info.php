@@ -11,9 +11,9 @@ if ( empty( $meta['address'][0] )
 	&& empty( $meta['address2'][0] )
 	&& empty( $meta['city'][0] )
 	&& empty( $meta['state'][0] )
-	&& empty( $meta['zipcode'][0] )
+	&& empty( $meta['zipCode'][0] )
 	&& empty( $meta['building'][0] )
-	&& empty( $meta['office'][0] )
+	&& empty( $meta['officeNumber'][0] )
 	) {
 
 	return;
@@ -43,7 +43,7 @@ if ( ! empty( $meta['address2'][0] ) ) {
 
 }
 
-if ( ! empty( $meta['city'][0] ) || ! empty( $meta['state'][0] ) || ! empty( $meta['zipcode'][0] ) ) {
+if ( ! empty( $meta['city'][0] ) || ! empty( $meta['state'][0] ) || ! empty( $meta['zipCode'][0] ) ) {
 
 	?><p><?php
 
@@ -75,45 +75,45 @@ if ( ! empty( $meta['state'][0] ) ) {
 
 }
 
-if ( ! empty( $meta['state'][0] ) && ! empty( $meta['zipcode'][0] ) ) {
+if ( ! empty( $meta['state'][0] ) && ! empty( $meta['zipCode'][0] ) ) {
 
 	?>&nbsp;<?php
 
 }
 
-if ( ! empty( $meta['zipcode'][0] ) ) {
+if ( ! empty( $meta['zipCode'][0] ) ) {
 
 	?><span class="zipcode postal-code" itemprop="postalCode"><?php
 
-		echo esc_html( $meta['zipcode'][0], 'employees' );
+		echo esc_html( $meta['zipCode'][0], 'employees' );
 
 	?></span><?php
 
 }
 
-if ( ! empty( $meta['city'][0] ) || ! empty( $meta['state'][0] ) || ! empty( $meta['zipcode'][0] ) ) {
+if ( ! empty( $meta['city'][0] ) || ! empty( $meta['state'][0] ) || ! empty( $meta['zipCode'][0] ) ) {
 
 	?></p><?php
 
 }
 
-if ( ! empty( $meta['building'][0] ) || ! empty( $meta['office'][0] ) ) {
+if ( ! empty( $meta['building'][0] ) || ! empty( $meta['officeNumber'][0] ) ) {
 
 	?><p><?php
 
 }
 
-if ( ! empty( $meta['office'][0] ) ) {
+if ( ! empty( $meta['officeNumber'][0] ) ) {
 
 	?><span class="office" itemprop="additionalProperty"><?php
 
-		echo esc_html( $meta['office'][0], 'employees' );
+		echo esc_html( $meta['officeNumber'][0], 'employees' );
 
 	?></span><?php
 
 }
 
-if ( ! empty( $meta['building'][0] ) && ! empty( $meta['office'][0] ) ) {
+if ( ! empty( $meta['building'][0] ) && ! empty( $meta['officeNumber'][0] ) ) {
 
 	?>, <?php
 
@@ -129,7 +129,7 @@ if ( ! empty( $meta['building'][0] ) ) {
 
 }
 
-if ( ! empty( $meta['building'][0] ) || ! empty( $meta['office'][0] ) ) {
+if ( ! empty( $meta['building'][0] ) || ! empty( $meta['officeNumber'][0] ) ) {
 
 	?></p><?php
 
