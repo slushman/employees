@@ -23,15 +23,15 @@ class Metabox_Location extends \Employees\Admin\Metabox {
 
 		$field1['attributes']['id'] 	= 'address1';
 		$field1['properties']['label'] 	= esc_html__( 'Street Address 1', 'employees' );
-		$check_fields[] 				= array( 'address1', 'text', '', 'field_text', $field1 );
+		$metabox_fields[] 				= array( 'address1', 'text', '', 'field_text', $field1 );
 
 		$field2['attributes']['id'] 	= 'address2';
 		$field2['properties']['label'] 	= esc_html__( 'Street Address 2', 'employees' );
-		$check_fields[] 				= array( 'address2', 'text', '', 'field_text', $field2 );
+		$metabox_fields[] 				= array( 'address2', 'text', '', 'field_text', $field2 );
 
 		$field3['attributes']['id'] 	= 'city';
 		$field3['properties']['label'] 	= esc_html__( 'City', 'employees' );
-		$check_fields[] 				= array( 'city', 'text', '', 'field_text', $field3 );
+		$metabox_fields[] 				= array( 'city', 'text', '', 'field_text', $field3 );
 
 		$field4['attributes']['id'] 	= 'state';
 		$field4['properties']['label'] 	= esc_html__( 'State', 'employees' );
@@ -97,21 +97,21 @@ class Metabox_Location extends \Employees\Admin\Metabox {
 		$field4['options'][] 			= array( 'value' => 'PR', 'label' => esc_html__( 'Puerto Rico', 'employees' ) );
 		$field4['options'][] 			= array( 'value' => 'PW', 'label' => esc_html__( 'Palau', 'employees' ) );
 		$field4['options'][] 			= array( 'value' => 'VI', 'label' => esc_html__( 'Virgin Islands', 'employees' ) );
-		$check_fields[] 				= array( 'state', 'select', '', 'field_select', $field4 );
+		$metabox_fields[] 				= array( 'state', 'select', '', 'field_select', $field4 );
 
 		$field5['attributes']['id'] 	= 'zip-code';
 		$field5['properties']['label'] 	= esc_html__( 'Zip Code', 'employees' );
-		$check_fields[] 				= array( 'zip-code', 'text', '', 'field_text', $field5 );
+		$metabox_fields[] 				= array( 'zipCode', 'text', '', 'field_text', $field5 );
 
 		$field5['attributes']['id'] 	= 'building';
 		$field5['properties']['label'] 	= esc_html__( 'Building', 'employees' );
-		$check_fields[] 				= array( 'building', 'text', '', 'field_text', $field5 );
+		$metabox_fields[] 				= array( 'building', 'text', '', 'field_text', $field5 );
 
 		$field5['attributes']['id'] 	= 'office-number';
 		$field5['properties']['label'] 	= esc_html__( 'Office Number', 'employees' );
-		$check_fields[] 				= array( 'office-number', 'text', '', 'field_text', $field5 );
+		$metabox_fields[] 				= array( 'officeNumber', 'text', '', 'field_text', $field5 );
 
-		$this->set_check_fields( $check_fields );
+		$this->set_metabox_fields( $metabox_fields );
 		$this->set_post_type( 'employee' );
 
 	} // __construct()

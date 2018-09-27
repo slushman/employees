@@ -25,9 +25,9 @@ class Metabox_Job_Title extends \Employees\Admin\Metabox {
 		$args_field1['attributes']['id'] 			= 'job-title';
 		$args_field1['attributes']['type'] 			= 'text';
 		$args_field1['properties']['label'] 		= esc_html__( 'Job Title', 'employees' );
-		$check_fields[] 							= array( 'job-title', 'text', '', 'field_text', $args_field1 );
+		$metabox_fields[] 							= array( 'jobTitle', 'text', '', 'field_text', $args_field1 );
 
-		$this->set_check_fields( $check_fields );
+		$this->set_metabox_fields( $metabox_fields );
 		$this->set_post_type( 'employee' );
 
 	} // __construct()

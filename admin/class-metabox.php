@@ -38,7 +38,7 @@ class Metabox {
 	 *
 	 * @var 		array 		$fields 		The fields used in this metabox.
 	 */
-	protected $check_fields = array();
+	protected $metabox_fields = array();
 
 	/**
 	 * The post meta data
@@ -167,7 +167,7 @@ class Metabox {
 	 */
 	protected function output_metabox( $post, $params ) {
 
-		foreach ( $this->check_fields as $field ) :
+		foreach ( $this->metabox_fields as $field ) :
 
 			?><p><?php
 
@@ -251,7 +251,7 @@ class Metabox {
 	 */
 	public function register_meta_fields() {
 
-		foreach ( $this->check_fields as $field ) {
+		foreach ( $this->metabox_fields as $field ) {
 
 			register_meta( 'post', $field[0], array(
 				'show_in_rest' => true,
@@ -331,21 +331,6 @@ class Metabox {
 	} // sanitize_repeater()
 
 	/**
-	 * Sets the $check_fields class variable.
-	 *
-	 * @since 		1.0.0
-	 * @param 		array 		$fields			The fields used in the metabox.
-	 * @return 		boolean 	FALSE 			If $fields is empty.
-	 */
-	protected function set_check_fields( $fields ) {
-
-		if ( empty( $fields ) ) { return FALSE; }
-
-		$this->check_fields = $fields;
-
-	} // set_check_fields()
-
-	/**
 	 * Sets the $fields class variable.
 	 *
 	 * @since 		1.0.0
@@ -359,6 +344,21 @@ class Metabox {
 		$this->fields = $fields;
 
 	} // set_fields()
+
+	/**
+	 * Sets the $metabox_fields class variable.
+	 *
+	 * @since 		1.0.0
+	 * @param 		array 		$fields			The fields used in the metabox.
+	 * @return 		boolean 	FALSE 			If $fields is empty.
+	 */
+	protected function set_metabox_fields( $fields ) {
+
+		if ( empty( $fields ) ) { return FALSE; }
+
+		$this->metabox_fields = $fields;
+
+	} // set_metabox_fields()
 
 	/**
 	 * Sets the class variable $options
@@ -437,7 +437,7 @@ class Metabox {
 
 		if ( ! $validate ) { return $post_id; }
 
-		foreach ( $this->check_fields as $meta ) {
+		foreach ( $this->metabox_fields as $meta ) {
 
 			if ( ! array_key_exists( $meta[0], $_POST ) ) { continue; }
 

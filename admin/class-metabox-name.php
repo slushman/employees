@@ -23,21 +23,21 @@ class Metabox_Name extends \Employees\Admin\Metabox {
 
 		$field1['attributes']['id'] 	= 'prefix';
 		$field1['properties']['label'] 	= esc_html__( 'Prefix', 'employees' );
-		$check_fields[] 				= array( 'prefix', 'text', '', 'field_text', $field1 );
+		$metabox_fields[] 				= array( 'prefix', 'text', '', 'field_text', $field1 );
 
 		$field2['attributes']['id'] 	= 'name-first';
 		$field2['properties']['label'] 	= esc_html__( 'First Name', 'employees' );
-		$check_fields[] 				= array( 'name-first', 'text', '', 'field_text', $field2 );
+		$metabox_fields[] 				= array( 'nameFirst', 'text', '', 'field_text', $field2 );
 
 		$field3['attributes']['id'] 	= 'name-last';
 		$field3['properties']['label'] 	= esc_html__( 'Last Name', 'employees' );
-		$check_fields[] 				= array( 'name-last', 'text', '', 'field_text', $field3 );
+		$metabox_fields[] 				= array( 'nameLast', 'text', '', 'field_text', $field3 );
 
 		$field4['attributes']['id'] 	= 'suffix';
 		$field4['properties']['label'] 	= esc_html__( 'Suffix', 'employees' );
-		$check_fields[] 				= array( 'suffix', 'text', '', 'field_text', $field4 );
+		$metabox_fields[] 				= array( 'suffix', 'text', '', 'field_text', $field4 );
 
-		$this->set_check_fields( $check_fields );
+		$this->set_metabox_fields( $metabox_fields );
 		$this->set_post_type( 'employee' );
 
 	} // __construct()

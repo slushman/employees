@@ -23,18 +23,18 @@ class Metabox_Links extends \Employees\Admin\Metabox {
 
 		$check_fields = array();
 		$links 	= array();
-		$links[] = array( 'facebook', __( 'Facebook', 'employees' ) );
-		$links[] = array( 'flickr', __( 'Flickr', 'employees' ) );
-		$links[] = array( 'github', __( 'GitHub', 'employees' ) );
-		$links[] = array( 'google', __( 'Google+', 'employees' ) );
-		$links[] = array( 'instagram', __( 'Instagram', 'employees' ) );
-		$links[] = array( 'linkedin', __( 'LinkedIn', 'employees' ) );
-		$links[] = array( 'medium', __( 'Medium', 'employees' ) );
-		$links[] = array( 'pinterest', __( 'Pinterest', 'employees' ) );
-		$links[] = array( 'tumblr', __( 'tumblr', 'employees' ) );
-		$links[] = array( 'twitter', __( 'Twitter', 'employees' ) );
-		$links[] = array( 'website', __( 'Website', 'employees' ) );
-		$links[] = array( 'wordpress', __( 'WordPress', 'employees' ) );
+		$links[] = array( 'Facebook', __( 'Facebook', 'employees' ) );
+		$links[] = array( 'Flickr', __( 'Flickr', 'employees' ) );
+		$links[] = array( 'Github', __( 'GitHub', 'employees' ) );
+		$links[] = array( 'Google', __( 'Google+', 'employees' ) );
+		$links[] = array( 'Instagram', __( 'Instagram', 'employees' ) );
+		$links[] = array( 'Linkedin', __( 'LinkedIn', 'employees' ) );
+		$links[] = array( 'Medium', __( 'Medium', 'employees' ) );
+		$links[] = array( 'Pinterest', __( 'Pinterest', 'employees' ) );
+		$links[] = array( 'Tumblr', __( 'tumblr', 'employees' ) );
+		$links[] = array( 'Twitter', __( 'Twitter', 'employees' ) );
+		$links[] = array( 'Website', __( 'Website', 'employees' ) );
+		$links[] = array( 'Wordpress', __( 'WordPress', 'employees' ) );
 
 		foreach ( $links as $link ) {
 
@@ -46,12 +46,12 @@ class Metabox_Links extends \Employees\Admin\Metabox {
 			$field_args['attributes']['type'] 	= 'url';
 			$field_args['properties']['label'] 	= $link[1];
 
-			array_push( $check_fields, array( 'url-' . $link[0], 'url', '', 'field_text', $field_args ) );
+			array_push( $metabox_fields, array( 'url' . $link[0], 'url', '', 'field_text', $field_args ) );
 			unset( $field_args );
 
 		} // foreach
 
-		$this->set_check_fields( $check_fields );
+		$this->set_metabox_fields( $metabox_fields );
 		$this->set_post_type( 'employee' );
 
 	} // __construct()

@@ -24,29 +24,29 @@ class Metabox_Contact extends \Employees\Admin\Metabox {
 
 		$field1['attributes']['id'] 			= 'phone-office';
 		$field1['properties']['label'] 			= esc_html__( 'Office Phone', 'employees' );
-		$check_fields[] 						= array( 'phone-office', 'text', '', 'field_text', $field1 );
+		$metabox_fields[] 						= array( 'phoneOffice', 'text', '', 'field_text', $field1 );
 
 		$field2['attributes']['id'] 			= 'phone-cell';
 		$field2['properties']['label'] 			= esc_html__( 'Cell Phone', 'employees' );
-		$check_fields[] 						= array( 'phone-cell', 'text', '', 'field_text', $field2 );
+		$metabox_fields[] 						= array( 'phoneCell', 'text', '', 'field_text', $field2 );
 
 		$field3['attributes']['id'] 			= 'fax-number';
 		$field3['properties']['label'] 			= esc_html__( 'Fax Number', 'employees' );
-		$check_fields[] 						= array( 'fax-number', 'text', '', 'field_text', $field3 );
+		$metabox_fields[] 						= array( 'faxNumber', 'text', '', 'field_text', $field3 );
 
 		$field4['attributes']['id'] 			= 'email';
 		$field4['attributes']['type'] 			= 'email';
 		$field4['properties']['label'] 			= esc_html__( 'Email Address', 'employees' );
-		$check_fields[] 						= array( 'email', 'email', '', 'field_text', $field4 );
+		$metabox_fields[] 						= array( 'email', 'email', '', 'field_text', $field4 );
 
 		$field5['attributes']['id'] 			= 'url-vcard';
 		$field5['attributes']['type'] 			= 'url';
 		$field5['properties']['label'] 			= esc_html__( 'vCard URL', 'employees' );
 		$field5['properties']['label-remove'] 	= __( 'Remove file', 'employees' );
 		$field5['properties']['label-upload'] 	= __( 'Choose/Upload file', 'employees' );
-		$check_fields[] 								= array( 'url-vcard', 'url', '', 'field_file_uploader', $field5 );
+		$metabox_fields[] 								= array( 'urlVcard', 'url', '', 'field_file_uploader', $field5 );
 
-		$this->set_check_fields( $check_fields );
+		$this->set_metabox_fields( $metabox_fields );
 		$this->set_post_type( 'employee' );
 
 	} // __construct()

@@ -25,9 +25,9 @@ class Metabox_Order extends \Employees\Admin\Metabox {
 		$field1['attributes']['type'] 			= 'number';
 		$field1['properties']['description'] 	= esc_html__( 'Choose when this person appears in the display order.', 'employees' );
 		$field1['properties']['label'] 			= esc_html__( 'Display Order', 'employees' );
-		$check_fields[] 								= array( 'display-order', 'number', '', 'field_text', $field1 );
+		$metabox_fields[] 								= array( 'display-order', 'number', '', 'field_text', $field1 );
 
-		$this->set_check_fields( $check_fields );
+		$this->set_metabox_fields( $metabox_fields );
 		$this->set_post_type( 'employee' );
 
 	} // __construct()
