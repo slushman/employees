@@ -49,6 +49,8 @@ class Metabox_Order extends \Employees\Admin\Metabox {
 	/**
 	 * Registers metaboxes with WordPress
 	 *
+	 * @exits 		If on a Gutenberg page.
+	 * @exits 		If not an employee post type.
 	 * @hooked 		add_meta_boxes
 	 * @since 		1.0.0
 	 * @access 		public

@@ -142,7 +142,7 @@ class Metabox {
 	public function metabox( $post, $params ) {
 
 		if ( ! is_admin() ) { return; }
-		//if ( ! $this->check_post_type( $post->post_type ) ) { return; }
+		if ( ! $this->check_post_type( $post->post_type ) ) { return; }
 
 		wp_nonce_field( EMPLOYEES_SLUG, $this->nonce );
 

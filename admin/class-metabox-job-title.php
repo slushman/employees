@@ -50,6 +50,8 @@ class Metabox_Job_Title extends \Employees\Admin\Metabox {
 	/**
 	 * Registers metaboxes with WordPress
 	 *
+	 * @exits 		If on a Gutenberg page.
+	 * @exits 		If not an employee post type.
 	 * @hooked 		add_meta_boxes
 	 * @since 		1.0.0
 	 * @access 		public
@@ -58,6 +60,7 @@ class Metabox_Job_Title extends \Employees\Admin\Metabox {
 	 */
 	public function add_metaboxes( $post_type, $post ) {
 
+		if ( is_gutenberg_page() ) { return; }
 		if ( 'employee' !== $post_type ) { return; }
 
 		add_meta_box(

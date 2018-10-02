@@ -70,7 +70,7 @@ function employees_init() {
 	$classes[] = new Admin\Metabox_Location( new Fields\Fields_Admin( 'metabox' ) );
 	$classes[] = new Admin\Metabox_Order( new Fields\Fields_Admin( 'metabox' ) );
 	$classes[] = new Admin\Admin( new Fields\Fields_Admin( 'settings' ), new Inc\Sanitize() );
-	$classes[] = new Blocks\Blocks();
+	$classes[] = new Blocks\Blocks( new Inc\Query );
 
 	foreach ( $classes as $class ) {
 
