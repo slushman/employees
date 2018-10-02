@@ -1,17 +1,1 @@
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-/**
- * #.# Editor Styles
- *
- * CSS for just Backend enqueued after style.scss
- * which makes it higher in priority.
- */
-.employee-name-edit-wrap {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: justify;
-      justify-content: space-between; }
+.employee-name-edit-wrap{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}
