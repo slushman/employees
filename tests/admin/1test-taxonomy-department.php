@@ -63,14 +63,12 @@ class TestTaxDept extends WP_UnitTestCase {
 		$this->assertTrue( is_array( $options ) );
 
 		// Check for the expected array keys
-        $this->assertArrayHasKey( 'label', $options );
-		$this->assertArrayHasKey( 'show_admin_column', $options );
+		$this->assertArrayHasKey( 'hierarchical', $options );
+        $this->assertArrayHasKey( 'labels', $options );
 		$this->assertArrayHasKey( 'public', $options );
 		$this->assertArrayHasKey( 'show_in_rest', $options );
 
 		// Check for the expected values
-		$this->assertEquals( 'Departments', $options['label'] );
-		$this->assertTrue( $options['show_admin_column'] );
 		$this->assertTrue( $options['public'] );
 		$this->assertTrue( $options['show_in_rest'] );
 

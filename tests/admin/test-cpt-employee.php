@@ -71,12 +71,12 @@ class TestCPTEmployee extends WP_UnitTestCase {
 	} // test_hooks()
 
 	/**
-     * Asserts TRUE that the 'employee' post type exists.
-     *
-     * @covers 			Employees\Admin\CPT_Employee::new_cpt_employee()
-     * @expects 		bool 		TRUE
-     * @since 			1.0.0
-     */
+	 * Asserts TRUE that the 'employee' post type exists.
+	 * 
+	 * @covers 			Employees\Admin\CPT_Employee::new_cpt_employee()
+	 * @expects 		bool 		TRUE
+	 * @since 			1.0.0
+	 */
 	public function test_newCPTEmployee() {
 
 		$cpt_employee = $this->cptemployee->new_cpt_employee();

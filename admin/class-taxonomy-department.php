@@ -46,6 +46,12 @@ class Taxonomy_Department {
 
 	} // flush_rewrites()
 
+	/**
+	 * Returns the options for the taxonomy.
+	 * 
+	 * @since 		1.0.0
+	 * @return 		array 		The taxonomy options.
+	 */
 	public function get_taxonomy_department_options() {
 
 		$opts['hierarchical']							= TRUE;

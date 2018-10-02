@@ -62,10 +62,10 @@ class CPT_Employee {
 	} // flush_rewrites()
 
 	/**
-	 * Returns the options for the answer custom post type.
+	 * Returns the options for the employee custom post type.
 	 *
 	 * @since 		1.5
-	 * @return 		array 		The answer custom post type options array.
+	 * @return 		array 		The employee custom post type options array.
 	 */
 	public function get_cpt_employee_options() {
 
