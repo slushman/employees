@@ -23,7 +23,7 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  */
 registerBlockType( 'employees/employee-name-block', {
 	title: __( 'Employee Name' ),
-	icon: 'admin-users',
+	icon: 'nametag',
 	category: 'employees',
 	keywords: [
 		__( 'Employee Name' ),
