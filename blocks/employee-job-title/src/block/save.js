@@ -1,17 +1,8 @@
-import PropTypes from 'prop-types';
-
-const Save = ( { jobTitle } ) => {
+const Save = ( props ) => {
+	const { jobTitle } = props.attributes;
 	return (
-		<div className="employee-job-title">
-			{
-				jobTitle
-			}
-		</div>
+		<div className="employee-job-title">{ jobTitle }</div>
 	);
-};
-
-Save.propTypes = {
-	jobTitle: PropTypes.string.isRequired,
 };
 
 export default Save;
