@@ -140,9 +140,8 @@ class Blocks {
 	public function get_blocks() {
 
 		$blocks = array();
-		$blocks[] = 'employee-name';
-		$blocks[] = 'employee-job-title';
-		// $blocks[] = 'employee-contact-info';
+		//$blocks[] = 'employee-job-title';
+		//$blocks[] = 'employee-contact-info';
 		// $blocks[] = 'employees-list';
 
 		return $blocks;
