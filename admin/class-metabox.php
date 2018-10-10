@@ -144,6 +144,13 @@ class Metabox {
 		if ( ! is_admin() ) { return; }
 		if ( ! $this->check_post_type( $post->post_type ) ) { return; }
 
+		/**
+		 * The employees_metabox_before_content action.
+		 * @param 		obj 		$post 			The post object.
+		 * @param 		array 		$params 		The parameters passed to the metabox.
+		 */
+		do_action( 'employees_metabox_before_content', $post, $params );
+
 		wp_nonce_field( EMPLOYEES_SLUG, $this->nonce );
 
 		if ( isset( $params['args']['file'] ) ) {
@@ -155,6 +162,13 @@ class Metabox {
 			$this->output_metabox( $post, $params );
 
 		}
+
+		/**
+		 * The employees_metabox_after_content action.
+		 * @param 		obj 		$post 			The post object.
+		 * @param 		array 		$params 		The parameters passed to the metabox.
+		 */
+		do_action( 'employees_metabox_after_content', $post, $params );
 
 	} // metabox()
 
