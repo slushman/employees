@@ -49,10 +49,11 @@ class Metabox_Name extends \Employees\Admin\Metabox {
 	 */
 	public function hooks() {
 
-		add_action( 'add_meta_boxes', 	array( $this, 'add_metaboxes' ), 10, 2 );
-		add_action( 'save_post', 		array( $this, 'validate_meta' ), 10, 2 );
-		add_action( 'add_meta_boxes', 	array( $this, 'set_meta' ), 1, 2 );
-		add_action( 'rest_api_init', 	array( $this, 'register_meta_fields' ), 99 );
+		add_action( 'add_meta_boxes', 					array( $this, 'add_metaboxes' ), 10, 2 );
+		add_action( 'save_post', 						array( $this, 'validate_meta' ), 10, 2 );
+		add_action( 'add_meta_boxes', 					array( $this, 'set_meta' ), 1, 2 );
+		add_action( 'rest_api_init', 					array( $this, 'register_meta_fields' ), 99 );
+		add_action( 'employees_metabox_after_content', 	array( $this, 'metabox_help_content' ), 10, 2 );
 
 	} // hooks()
 
@@ -69,7 +70,11 @@ class Metabox_Name extends \Employees\Admin\Metabox {
 	 */
 	public function add_metaboxes( $post_type, $post ) {
 
-		if ( is_gutenberg_page() ) { return; }
+		if ( is_gutenberg_page() ) {
+			$position = 'side';
+		} else {
+			$position = 'normal';
+		}
 		if ( 'employee' !== $post_type ) { return; }
 
 		add_meta_box(
@@ -77,11 +82,28 @@ class Metabox_Name extends \Employees\Admin\Metabox {
 			esc_html__( 'Name Details', 'employees' ),
 			array( $this, 'metabox' ),
 			'employee',
-			'normal',
+			$position,
 			'default',
 			array()
 		);
 
 	} // add_metaboxes()
+
+	/**
+	 * Returns content displayed at the bottom of the metabox, after all the fields.
+	 * 
+	 * @hooked 		employees_metabox_after_content
+	 * @since 		1.5
+	 * @param 		obj 		$post 			The post object.
+	 * @param 		array 		$params 		The parameters passed to the metabox.
+	 * @return 		mixed 						Content.
+	 */
+	public function metabox_help_content( $post, $params ) {
+
+		if ( 'employee' !== $post->post_type ) { return FALSE; }
+
+		?><p>These fields help with sorting employees by last name, title, etc.</p><?php
+
+	} // metabox_help_content()
 
 } // class
