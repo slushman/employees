@@ -9,6 +9,7 @@
     "rebuild": "cgb-scripts build && npm start"
   },
   "dependencies": {
-    "cgb-scripts": "1.9.8"
+    "cgb-scripts": "1.9.8",
+    "classnames": "^2.2.6"
   }
 }

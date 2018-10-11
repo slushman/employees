@@ -3,12 +3,6 @@
  *
  * CSS for both Frontend+Backend.
  */
-
-.wp-block-cgb-block-employee-job-title  {
-  background: $red;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
+.employee-job-title {
+	font-size: 1.5em;
 }
