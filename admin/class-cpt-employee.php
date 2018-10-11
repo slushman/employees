@@ -77,7 +77,7 @@ class CPT_Employee {
 		$opts['supports'] 								= array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' );
 		$opts['template'] 								= array(
 			array( 'core/image', array( 'align' => 'left' ) ),
-			array( 'core/paragraph', array( 'placeholder' => __( 'Job Title', 'employees' ) ) ),
+			array( 'employees/job-title' ),
 			array( 'core/paragraph', array( 'placeholder' => __( 'Employee Bio', 'employees' ) ) ),
 			array( 'core/heading', array( 'content' => __( 'Connect', 'employees' ), 'level' => 2 ) ),
 			array( 'social-links/social-links-block' ),
