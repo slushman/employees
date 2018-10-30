@@ -143,7 +143,6 @@ class Metabox_Location extends \Employees\Admin\Metabox {
 	 */
 	public function add_metaboxes( $post_type, $post ) {
 
-		if ( is_gutenberg_page() ) { return; }
 		if ( 'employee' !== $post_type ) { return; }
 
 		add_meta_box(
@@ -153,7 +152,9 @@ class Metabox_Location extends \Employees\Admin\Metabox {
 			'employee',
 			'normal',
 			'default',
-			array()
+			array(
+				'__back_compat_meta_box' => true,
+			)
 		);
 
 	} // add_metaboxes()
