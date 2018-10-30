@@ -141,7 +141,7 @@ class Blocks {
 
 		$blocks = array();
 		$blocks[] = 'employee-job-title';
-		//$blocks[] = 'employee-contact-info';
+		$blocks[] = 'employee-contact-info';
 		// $blocks[] = 'employees-list';
 
 		return $blocks;

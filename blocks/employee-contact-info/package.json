@@ -1,0 +1,15 @@
+{
+  "name": "employee-contact-info-cgb-guten-block",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cgb-scripts start",
+    "build": "cgb-scripts build",
+    "eject": "cgb-scripts eject",
+    "rebuild": "cgb-scripts build && npm start"
+  },
+  "dependencies": {
+    "cgb-scripts": "1.11.0",
+    "classnames": "^2.2.6"
+  }
+}
