@@ -82,7 +82,7 @@ class CPT_Employee {
 			array( 'core/heading', array( 'content' => __( 'Connect', 'employees' ), 'level' => 2 ) ),
 			array( 'social-links/social-links-block' ),
 			array( 'core/heading', array( 'content' => __( 'Contact', 'employees' ), 'level' => 2 ) ),
-			//array( 'employees/contact-info-block' ),			
+			array( 'employees/employee-contact-info-block' ),
 		);
 
 		$opts['labels']['add_new']						= esc_html__( 'Add New Employee', 'employees' );
