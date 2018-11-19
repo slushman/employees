@@ -1,0 +1,44 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-employees-employee-contact-info-block {
+	margin-bottom: 1.5em;
+}
+
+.contact-info-list {
+	list-style: none !important;
+	margin: 0;
+	padding: 0;
+
+	&.is-grid {
+		display: flex;
+		flex-wrap: wrap;
+	}
+}
+
+.employee-field-list-item {
+	.is-grid & {
+		flex: 50%;
+	}
+}
+
+.employee-field-wrap {
+	display: flex;
+}
+
+.employee-field-wrap > div,
+.employee-field-wrap .employee-field-label,
+.employee-data {
+	margin-left: 0.5em;
+}
+
+.contact-info-heading {
+	flex-basis: 100%;
+}
+
+.employee-field-list-item {
+	margin-bottom: 1.5em;
+}

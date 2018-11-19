@@ -1,0 +1,22 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-employees-employee-location {
+	margin-bottom: 1.5em;
+}
+
+.employee-city-state-zip {
+	display: flex;
+
+	&:not(:last-child) {
+		margin-right: 1em;
+	}
+}
+
+.separator-city-state,
+.separator-state-zip {
+	margin-right: 0.25em;
+}

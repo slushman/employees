@@ -1,0 +1,60 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.screen-reader-text {
+	border 		: 0;
+	clip 		: rect(1px, 1px, 1px, 1px);
+	clip-path 	: inset(50%);
+	height 		: 1px;
+	margin 		: -1px;
+	overflow 	: hidden;
+	padding 	: 0;
+	position 	: absolute !important;
+	width 		: 1px;
+	word-wrap	: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+
+	&:focus {
+		background-color 	: #fff;
+		border-radius 		: 3px;
+		box-shadow 			: 0 0 2px 2px rgba(#cccccc, 0.6);
+		clip 				: auto !important;
+		clip-path 			: none;
+		color 				: #020202;
+		display 			: block;
+		font-size 			: 0.875em;
+		font-weight 		: bold;
+		height 				: auto;
+		left 				: 5px;
+		line-height 		: normal;
+		padding 			: 15px 23px 14px;
+		text-decoration 	: none;
+		top 				: 5px;
+		width 				: auto;
+		z-index 			: 100000; /* Above WP toolbar */
+	}
+}
+
+.employee-links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	list-style: none !important;
+	margin: 0;
+	padding: 0;
+}
+
+.employee-link {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+@for $i from 24 through 60 {
+	.icon-size-#{ $i } svg {
+		height: $i + unquote( "px" );
+		width: $i + unquote( "px" );
+	}
+}
