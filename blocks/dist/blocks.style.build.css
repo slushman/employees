@@ -1,0 +1,300 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-employees-job-title {
+  margin-bottom: 1.5em; }
+
+.employee-job-title {
+  font-size: 1.5em; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-employees-employee-contact-info-block {
+  margin-bottom: 1.5em; }
+
+.contact-info-list {
+  list-style: none !important;
+  margin: 0;
+  padding: 0; }
+  .contact-info-list.is-grid {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+
+.is-grid .employee-field-list-item {
+  -ms-flex: 50%;
+      flex: 50%; }
+
+.employee-field-wrap {
+  display: -ms-flexbox;
+  display: flex; }
+
+.employee-field-wrap > div,
+.employee-field-wrap .employee-field-label,
+.employee-data {
+  margin-left: 0.5em; }
+
+.contact-info-heading {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%; }
+
+.employee-field-list-item {
+  margin-bottom: 1.5em; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-employees-employee-location {
+  margin-bottom: 1.5em; }
+
+.employee-city-state-zip {
+  display: -ms-flexbox;
+  display: flex; }
+  .employee-city-state-zip:not(:last-child) {
+    margin-right: 1em; }
+
+.separator-city-state,
+.separator-state-zip {
+  margin-right: 0.25em; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+  /* Many screen reader and browser combinations announce broken words as they would appear visually. */ }
+  .screen-reader-text:focus {
+    background-color: #fff;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 2px 2px rgba(204, 204, 204, 0.6);
+            box-shadow: 0 0 2px 2px rgba(204, 204, 204, 0.6);
+    clip: auto !important;
+    -webkit-clip-path: none;
+            clip-path: none;
+    color: #020202;
+    display: block;
+    font-size: 0.875em;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+    /* Above WP toolbar */ }
+
+.employee-links {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  list-style: none !important;
+  margin: 0;
+  padding: 0; }
+
+.employee-link {
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+
+.icon-size-24 svg {
+  height: 24px;
+  width: 24px; }
+
+.icon-size-25 svg {
+  height: 25px;
+  width: 25px; }
+
+.icon-size-26 svg {
+  height: 26px;
+  width: 26px; }
+
+.icon-size-27 svg {
+  height: 27px;
+  width: 27px; }
+
+.icon-size-28 svg {
+  height: 28px;
+  width: 28px; }
+
+.icon-size-29 svg {
+  height: 29px;
+  width: 29px; }
+
+.icon-size-30 svg {
+  height: 30px;
+  width: 30px; }
+
+.icon-size-31 svg {
+  height: 31px;
+  width: 31px; }
+
+.icon-size-32 svg {
+  height: 32px;
+  width: 32px; }
+
+.icon-size-33 svg {
+  height: 33px;
+  width: 33px; }
+
+.icon-size-34 svg {
+  height: 34px;
+  width: 34px; }
+
+.icon-size-35 svg {
+  height: 35px;
+  width: 35px; }
+
+.icon-size-36 svg {
+  height: 36px;
+  width: 36px; }
+
+.icon-size-37 svg {
+  height: 37px;
+  width: 37px; }
+
+.icon-size-38 svg {
+  height: 38px;
+  width: 38px; }
+
+.icon-size-39 svg {
+  height: 39px;
+  width: 39px; }
+
+.icon-size-40 svg {
+  height: 40px;
+  width: 40px; }
+
+.icon-size-41 svg {
+  height: 41px;
+  width: 41px; }
+
+.icon-size-42 svg {
+  height: 42px;
+  width: 42px; }
+
+.icon-size-43 svg {
+  height: 43px;
+  width: 43px; }
+
+.icon-size-44 svg {
+  height: 44px;
+  width: 44px; }
+
+.icon-size-45 svg {
+  height: 45px;
+  width: 45px; }
+
+.icon-size-46 svg {
+  height: 46px;
+  width: 46px; }
+
+.icon-size-47 svg {
+  height: 47px;
+  width: 47px; }
+
+.icon-size-48 svg {
+  height: 48px;
+  width: 48px; }
+
+.icon-size-49 svg {
+  height: 49px;
+  width: 49px; }
+
+.icon-size-50 svg {
+  height: 50px;
+  width: 50px; }
+
+.icon-size-51 svg {
+  height: 51px;
+  width: 51px; }
+
+.icon-size-52 svg {
+  height: 52px;
+  width: 52px; }
+
+.icon-size-53 svg {
+  height: 53px;
+  width: 53px; }
+
+.icon-size-54 svg {
+  height: 54px;
+  width: 54px; }
+
+.icon-size-55 svg {
+  height: 55px;
+  width: 55px; }
+
+.icon-size-56 svg {
+  height: 56px;
+  width: 56px; }
+
+.icon-size-57 svg {
+  height: 57px;
+  width: 57px; }
+
+.icon-size-58 svg {
+  height: 58px;
+  width: 58px; }
+
+.icon-size-59 svg {
+  height: 59px;
+  width: 59px; }
+
+.icon-size-60 svg {
+  height: 60px;
+  width: 60px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/

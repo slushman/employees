@@ -82,18 +82,11 @@ class Blocks {
 	 */
 	public function enqueue_block_assets() {
 
-		$blocks = $this->get_blocks();
-
-		foreach ( $blocks as $block ) {
-
-			wp_enqueue_style(
-				$block . '-block-all-css',
-				plugin_dir_url( __FILE__ ) . $block . '/dist/blocks.style.build.css',
-				array( 'wp-blocks' ), 
-				EMPLOYEES_VERSION
-			);
-
-		}
+		wp_enqueue_style(
+			'employees-block-all-css',
+			plugins_url( 'blocks/dist/blocks.style.build.css', dirname( __FILE__ ) ),
+			array( 'wp-blocks' )
+		);
 
 	} // enqueue_block_assets()
 
@@ -109,44 +102,21 @@ class Blocks {
 	 */
 	public function enqueue_block_editor_assets() {
 
-		$blocks = $this->get_blocks();
+		wp_enqueue_script(
+			'employees-block-js',
+			plugins_url( 'blocks/dist/blocks.build.js', dirname( __FILE__ ) ),
+			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components' ),
+			// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ),
+			true
+		);
 
-		foreach ( $blocks as $block ) {
-
-			wp_enqueue_script(
-				$block . '-block-js',
-				plugin_dir_url( __FILE__ ) . $block . '/dist/blocks.build.js', 
-				plugin_dir_url( __FILE__ ) . 'dist/blocks.build.js',
-				array( 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-api', 'wp-data', 'wp-date', 'wp-utils' ),
-				EMPLOYEES_VERSION
-			);
-			wp_enqueue_style( 
-				$block . '-block-editor-css',
-				plugin_dir_url( __FILE__ ) . $block . '/dist/blocks.editor.build.css',
-				array( 'wp-blocks' ),
-				EMPLOYEES_VERSION
-			);
-
-		}
+		wp_enqueue_style( 
+			'employees-block-editor-css',
+			plugins_url( 'blocks/dist/blocks.editor.build.css', dirname( __FILE__ ) ),
+			array( 'wp-blocks' )
+		);
 
 	} // enqueue_block_editor_assets()
-
-	/**
-	 *  Returns an array of block names for this plugin.
-	 * 
-	 * @since 		1.5
-	 * @return 		array 			Array of block names.
-	 */
-	public function get_blocks() {
-
-		$blocks = array();
-		$blocks[] = 'employee-job-title';
-		$blocks[] = 'employee-contact-info';
-		// $blocks[] = 'employees-list';
-
-		return $blocks;
-
-	} // get_blocks()
 
 	/**
 	 * Registers blocks for dynamic content.
@@ -160,14 +130,23 @@ class Blocks {
 
 		if ( ! function_exists( 'register_block_type' ) ) { return; }
 
-		register_block_type( 'employees/employees-list-block', array(
-			'attributes' => array(
-				'test' => array(
-					'type' => 'string',
-				),
-			),
-			'render_callback' => array( $this, 'employees_list_block_render' )
-		) );
+		// register_block_type( 'employees/employees-list-block', array(
+		// 	'attributes' => array(
+		// 		'test' => array(
+		// 			'type' => 'string',
+		// 		),
+		// 	),
+		// 	'render_callback' => array( $this, 'employees_list_block_render' )
+		// ) );
+
+		// register_block_type( 'employees/show-employee', array(
+		// 	'attributes' => array(
+		// 		'employee' => array(
+		// 			'type' => 'number',
+		// 		),
+		// 	),
+		// 	'render_callback' => array( $this, 'show_employee_render' )
+		// ) );
 
 	} // register_dynamic_blocks()
 
@@ -183,22 +162,21 @@ class Blocks {
 
 		$markup = '';
 
-		$employees = $this->query();
+		//$query = new Query();
 
-		$recent_posts = wp_get_recent_posts( [
-			'numberposts' => 3,
-			'post_status' => 'publish',
-		] );
+		//$employees = $query->query();
 
-		if ( 0 === count( $recent_posts ) ) {
+		// get employees
+
+		if ( 0 === count( $employees ) ) {
 			return '<p>No one actually works here...</p>';
 		}
 
 		$markup .= '<ul>';
 
-		foreach( $recent_posts as $post ) {
+		foreach( $employees as $employee ) {
 
-			$post_id = $post['ID'];
+			$post_id = $employee['ID'];
 			$markup .= sprintf(
 				'<li><a href="%1$s">%2$s</a></li>',
 				esc_url( get_permalink( $post_id ) ),
@@ -212,5 +190,44 @@ class Blocks {
 		return $markup;
 
 	} // employees_list_block_render()
+
+	/**
+	 * Server rendering for the show-employee block.
+	 * 
+	 * @param 		array 		$attributes		The block attributes.
+	 * @return 		mixed 						The HTML markup for the block.
+	 */
+	public function show_employee_render( $attributes ) {
+
+		do_action( 'add_debug_info', $attributes, 'attributes' );
+
+		$markup = '';
+
+		$query = new \Employees\Includes\Query();
+
+		$employees = $query->query();
+
+		if ( 0 === count( $employees ) ) {
+			return '<p>No one actually works here...</p>';
+		}
+
+		$markup .= '<ul>';
+
+		foreach( $employees as $employee ) {
+
+			$post_id = $employee->ID;
+			$markup .= sprintf(
+				'<li><a href="%1$s">%2$s</a></li>',
+				esc_url( get_permalink( $post_id ) ),
+				esc_html( get_the_title( $post_id ) )
+			);
+
+		}
+
+		$markup .= '<ul>';
+
+		return $markup;
+
+	} // show_employee_render()
 
 } // class
