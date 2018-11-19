@@ -79,10 +79,9 @@ class CPT_Employee {
 			array( 'core/image', array( 'align' => 'left' ) ),
 			array( 'employees/job-title' ),
 			array( 'core/paragraph', array( 'placeholder' => __( 'Employee Bio', 'employees' ) ) ),
-			array( 'core/heading', array( 'content' => __( 'Connect', 'employees' ), 'level' => 2 ) ),
-			array( 'social-links/social-links-block' ),
-			array( 'core/heading', array( 'content' => __( 'Contact', 'employees' ), 'level' => 2 ) ),
 			array( 'employees/employee-contact-info-block' ),
+			array( 'employees/employee-location' ),
+			array( 'employees/employee-links' ),
 		);
 
 		$opts['labels']['add_new']						= esc_html__( 'Add New Employee', 'employees' );
