@@ -81,7 +81,9 @@ class Query {
 	 */
 	private function get_ordered_employees( $params ) {
 
+		$params['order'] 					= empty( $params['order'] ) ? 'ASC' : $params['order'];
 		$params['orderby'] 					= 'meta_value_num title';
+		$params['quantity'] 				= empty( $params['quantity'] ) ? 50 : $params['quantity'];
 		$params['meta_query'][0]['compare'] = '>';
 		$params['meta_query'][0]['key'] 	= 'displayOrder';
 		$params['meta_query'][0]['value'] 	= 0;
@@ -109,7 +111,9 @@ class Query {
 	 */
 	private function get_unordered_employees( $params ) {
 
+		$params['order'] 	= empty( $params['order'] ) ? 'ASC' : $params['order'];
 		$params['orderby'] 	= 'title';
+		$params['quantity'] = empty( $params['quantity'] ) ? 50 : $params['quantity'];
 		$args 				= $this->set_args( $params );
 
 		if ( empty( $args ) ) { return FALSE; }
